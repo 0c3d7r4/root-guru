@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>rootgu.ru — Become the Root Guru</title>
+ <style>
+  html,body {
+   margin:0;
+   padding:0;
+   overflow:hidden;
+   background:black;
+   color:#8fbc8f;
+   font-family: monospace;
+  }
+  #matrixCanvas {
+   position:fixed;
+   top:0;
+   left:0;
+   z-index:-1;
+  }
+  main {
+   position:relative;
+   z-index:1;
+   padding:4rem;
+   color:#c7c7c7;
+   max-width:800px;
+   margin:auto;
+  }
+  h1 {
+   color:#8fbc8f;
+   font-size:2rem;
+  }
+  button {
+   background:#8fbc8f;
+   color:black;
+   border:none;
+   padding:1rem 2rem;
+   font-weight:bold;
+   cursor:pointer;
+   margin-top:1rem;
+  }
+ </style>
+</head>
+<body>
+<canvas id="matrixCanvas"></canvas>
+
+<main>
+ <h1>Root Guru: Your Ultimate Linux & Security Command Center</h1>
+ <p>Master your system. Own the root.</p>
+ <button onclick="alert('Coming soon!')">Start Learning</button>
+</main>
+
+<script>
+var canvas=document.getElementById('matrixCanvas')
+var ctx=canvas.getContext('2d')
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+var chars='アァイゥエオカキクケコサシスセソタチツテトナニヌネノ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+var fontSize=16
+var columns=Math.floor(canvas.width/fontSize)
+var drops=Array(columns).fill(1)
+
+var mouseX=0
+
+window.addEventListener('mousemove',function(e) {
+ mouseX=e.clientX
+})
+
+function draw() {
+ ctx.fillStyle='rgba(0,0,0,0.05)'
+ ctx.fillRect(0,0,canvas.width,canvas.height)
+ ctx.fillStyle='#0f0'
+ ctx.font=fontSize+'px monospace'
+
+ var speedFactor=1+mouseX/canvas.width*2
+
+ for(var i=0;i<columns;i++) {
+  var text=chars[Math.floor(Math.random()*chars.length)]
+  var x=i*fontSize
+  var y=drops[i]*fontSize
+  ctx.fillText(text,x,y)
+  if(y>canvas.height && Math.random()>0.975) drops[i]=0
+  drops[i]+=speedFactor
+ }
+ requestAnimationFrame(draw)
+}
+
+draw()
+
+window.addEventListener('resize',function() {
+ canvas.width=window.innerWidth
+ canvas.height=window.innerHeight
+ columns=Math.floor(canvas.width/fontSize)
+ drops=Array(columns).fill(1)
+})
+</script>
+</body>
+</html>
