@@ -11,10 +11,25 @@ http.createServer(function(req,res) {
   res.writeHead(200,{'Content-Type':'text/html'})
   var html=readPageWithContent('index2','features')
   res.end(html)
- }else if(req.url=='/rucode') {
+ }else if(req.url.startsWith('/rucode')) {
+  if(req.url=='/rucode'){
+   var html=readPageWithContent('index2','rucode')
+  }else {
+   var html=readPageWithContent('index2','rucode-0')
+  }
   res.writeHead(200,{'Content-Type':'text/html'})
-  var html=readPageWithContent('index2','rucode')
   res.end(html)
+ }else if(req.url.endsWith('.css')) {
+  try{
+   var PATH=path.join(__dirname,'/',req.url)
+   console.log('css',PATH)
+   var css=fs.readFileSync(PATH)
+   res.writeHead(200,{'Content-Type':'text/css'})
+   res.end(css)
+  }catch(er) {
+   res.writeHead(500)
+   res.end('o_o')
+  }
  }else if(req.url.endsWith('.js')) {
   try{
    var PATH=path.join(__dirname,'/',req.url)
