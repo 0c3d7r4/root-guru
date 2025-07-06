@@ -11,6 +11,10 @@ http.createServer(function(req,res) {
   res.writeHead(200,{'Content-Type':'text/html'})
   var html=readPageWithContent('index','features')
   res.end(html)
+ }else if(req.url=='/games.html') {
+  res.writeHead(200,{'Content-Type':'text/html'})
+  var html=readPageWithContent('index','games')
+  res.end(html)
  }else if(req.url.startsWith('/rucode')) {
   if(req.url=='/rucode'){
    var html=readPageWithContent('index','rucode')

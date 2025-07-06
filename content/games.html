@@ -1,0 +1,41 @@
+<style>
+.cartoon-title {
+  /* font-family: 'Arial', sans-serif; */
+  font-family: 'Baloo 2', sans-serif;  /* Using Baloo 2 font */
+
+  font-size: 5rem;  /* Adjust the size as needed */
+  font-weight: bold;
+  color: #007bff;  /* Blue-ish color */
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 5px;  /* Add space between letters */
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  background: #ffffff;  /* White background */
+  border-radius: 12px;  /* Rounded corners */
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4); /* Soft shadow for 3D effect */
+  z-index: 1;
+}
+
+.cartoon-title:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(0, 123, 255, 0.7), rgba(29, 161, 242, 0.6)); /* Gradient glow effect */
+  z-index: -1;
+  filter: blur(10px); /* Blur effect for the background glow */
+}
+
+.cartoon-title {
+  text-shadow:
+    2px 2px 0 #004aad,  /* Deeper blue shadow */
+    4px 4px 0 #007bff,  /* Lighter blue shadow */
+    6px 6px 10px rgba(0, 0, 0, 0.5);  /* Black shadow for depth */
+}
+
+</style>
+<h1 class="cartoon-title">Penguin Games</h1>
