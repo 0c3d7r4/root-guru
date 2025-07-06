@@ -1,48 +1,47 @@
 var http=require('http')
 var fs=require('fs')
 var path=require('path')
+var mime = require('mime-types'); // Import the mime-types library
 
+// pages
+// index.html
+//
 http.createServer(function(req,res) {
- if(req.url=='/') {
+ if(req.url=='/'||req.url=='/index.html') {
   res.writeHead(200,{'Content-Type':'text/html'})
   var html=readPageWithContent('index','features')
   res.end(html)
- }else if(req.url=='/index2.html') {
-  res.writeHead(200,{'Content-Type':'text/html'})
-  var html=readPageWithContent('index2','features')
-  res.end(html)
  }else if(req.url.startsWith('/rucode')) {
   if(req.url=='/rucode'){
-   var html=readPageWithContent('index2','rucode')
+   var html=readPageWithContent('index','rucode')
   }else {
-   var html=readPageWithContent('index2','rucode-0')
+   var html=readPageWithContent('index','rucode-0')
   }
   res.writeHead(200,{'Content-Type':'text/html'})
   res.end(html)
- }else if(req.url.endsWith('.css')) {
-  try{
-   var PATH=path.join(__dirname,'/',req.url)
-   console.log('css',PATH)
-   var css=fs.readFileSync(PATH)
-   res.writeHead(200,{'Content-Type':'text/css'})
-   res.end(css)
-  }catch(er) {
-   res.writeHead(500)
-   res.end('o_o')
+ } else if (req.url.endsWith('.css') || req.url.endsWith('.js') || req.url.endsWith('.png')) {
+  try {
+    var filePath = path.join(__dirname, req.url);
+    var fileExtension = path.extname(filePath).toLowerCase();
+
+    // Use mime-types to determine the appropriate content type
+    var mimeType = mime.lookup(fileExtension);
+
+    if (!mimeType) {
+      res.writeHead(415); // Unsupported Media Type
+      res.end('Unsupported file type');
+      return;
+    }
+
+    var fileContent = fs.readFileSync(filePath);
+
+    res.writeHead(200, { 'Content-Type': mimeType });
+    res.end(fileContent);
+  } catch (er) {
+    res.writeHead(500);
+    res.end('Internal server error');
   }
- }else if(req.url.endsWith('.js')) {
-  try{
-   var PATH=path.join(__dirname,'/',req.url)
-   console.log(PATH)
-   var js=fs.readFileSync(PATH)
-   res.writeHead(200,{'Content-Type':'application/javascript'})
-   res.end(js)
-  }catch(er) {
-   res.writeHead(500)
-   res.end('o_o')
-  }
-  // readPageWithContent('pages',path.basename(req.url))
- }else {
+}else {
   res.writeHead(404)
   res.end('404 Not Found')
  }

@@ -1,0 +1,11 @@
+{
+  "name": "rootguru",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@gitlab.com:moderne/rootguru.git",
+  "author": "Anton <artdecocode@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mime-types": "^3.0.1"
+  }
+}
