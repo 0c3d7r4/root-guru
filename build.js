@@ -6,8 +6,8 @@ var baseURL='http://localhost:8080'
 var outputDir='docs'
 
 var routes=[
- '/','/guides','/scripts','/rucode',
- '/pages/style.css','/pages/matrix.js','/pages/favicon-32.png'
+ '/','/guides.html','/scripts.html','/rucode.html',
+ '/pages/matrix.js','/pages/favicon-32.png'
 ]
 
 function ensurePath(p) {

@@ -15,20 +15,20 @@ http.createServer(function(req,res) {
   res.writeHead(200,{'Content-Type':'text/html'})
   var html=readPageWithContent('index','games')
   res.end(html)
- }else if(req.url=='/docs') {
+ }else if(req.url=='/docs'||req.url=='/docs.html') {
   res.writeHead(200,{'Content-Type':'text/html'})
   var html=readPageWithContent('index','games')
   res.end(html)
- }else if(req.url=='/scripts') {
+ }else if(req.url=='/scripts'||req.url=='/scripts.html') {
   res.writeHead(200,{'Content-Type':'text/html'})
   var html=readPageWithContent('index','scripts')
   res.end(html)
- }else if(req.url=='/guides') {
+ }else if(req.url=='/guides'||req.url=='/guides.html') {
   res.writeHead(200,{'Content-Type':'text/html'})
   var html=readPageWithContent('index','guides')
   res.end(html)
  }else if(req.url.startsWith('/rucode')) {
-  if(req.url=='/rucode'){
+  if(req.url=='/rucode'||req.url=='/rucode.html'){
    var html=readPageWithContent('index','rucode')
   }else {
    var html=readPageWithContent('index','rucode-0')
