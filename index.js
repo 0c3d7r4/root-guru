@@ -15,6 +15,18 @@ http.createServer(function(req,res) {
   res.writeHead(200,{'Content-Type':'text/html'})
   var html=readPageWithContent('index','games')
   res.end(html)
+ }else if(req.url=='/docs') {
+  res.writeHead(200,{'Content-Type':'text/html'})
+  var html=readPageWithContent('index','games')
+  res.end(html)
+ }else if(req.url=='/scripts') {
+  res.writeHead(200,{'Content-Type':'text/html'})
+  var html=readPageWithContent('index','scripts')
+  res.end(html)
+ }else if(req.url=='/guides') {
+  res.writeHead(200,{'Content-Type':'text/html'})
+  var html=readPageWithContent('index','guides')
+  res.end(html)
  }else if(req.url.startsWith('/rucode')) {
   if(req.url=='/rucode'){
    var html=readPageWithContent('index','rucode')
