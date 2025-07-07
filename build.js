@@ -8,6 +8,7 @@ var outputDir='docs'
 var routes=[
  '/','/guides.html','/scripts.html','/rucode.html',
  '/pages/matrix.js','/pages/favicon-32.png',
+ '/pages/img.png','/pages/img2.png',
  '/pages/BalooCyrillic.woff','/pages/BalooCyrillic.woff2'
 ]
 
