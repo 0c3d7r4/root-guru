@@ -44,11 +44,13 @@ nav a:hover {
  min-width: fit-content;
  background-color: rgb(25, 25, 25);
  border-radius: 16px;
+ overflow: hidden;
  position:absolute;
  top:100%;left:-33px;width:100%;
  display: flex;
  flex-direction: column;
 }
+
 .NetworkCo .NavLi {
  align-items: center;
  justify-content: center;
@@ -60,10 +62,35 @@ nav a:hover {
 .NetworkCo .NavLi+.NavLi {
  border-top: 1px solid #8080805e;
 }
+.NetworkCo .NavLi:hover+.NavLi {
+ border-top: 1px solid #5050505e;
+}
 .NetworkCo .Icon {
  font-size:2rem;
  margin-right:.55rem;
 }
 h1 {
  font-family: 'Baloo 2'
+}
+
+details[i-d=GuruNetworkDe][open] [i-d=DeOpen] {
+ display: inline-block!important;
+}
+details[i-d=GuruNetworkDe]:not([open]) [i-d=DeOpen] {
+ display: none!important;
+}
+details[i-d=GuruNetworkDe][open] [i-d=DeClosed] {
+ display: none!important;
+}
+.NavLi small {
+ opacity: .37;
+}
+.NavLi:hover {
+ cursor: pointer;
+ background:#111111;
+}
+
+.NavLi {
+ display: flex;
+ flex-direction: column;
 }

@@ -7,7 +7,8 @@ var outputDir='docs'
 
 var routes=[
  '/','/guides.html','/scripts.html','/rucode.html',
- '/pages/matrix.js','/pages/favicon-32.png'
+ '/pages/matrix.js','/pages/favicon-32.png',
+ '/pages/BalooCyrillic.woff','/pages/BalooCyrillic.woff2'
 ]
 
 function ensurePath(p) {
@@ -27,6 +28,7 @@ async function fetchAndSave(route) {
   if(isHTML) {
    var html=buf.toString()
    html=html.replace(/<link[^>]+href="\/pages\/([^"]+\.css)"[^>]*>/g,function(_,file) {
+    if(/keep/.test(_)) return _
     try {
      var css=fs.readFileSync(path.join('pages',file),'utf8')
      return '<style>'+css+'</style>'
